@@ -74,11 +74,5 @@ void
 ShopListDlg::on_btnCopy_clicked()
 {
     auto list = dynamic_cast<QStringListModel*>( ui->inList->model())->stringList() ;
-
-    QString szRes ;
-    foreach( auto curr, list) {
-        szRes += curr + "\n" ;
-    }
-
-    QApplication::clipboard()->setText( szRes) ;
+    QApplication::clipboard()->setText( list.join( "\n")) ;
 }
