@@ -2,15 +2,22 @@
 #include "ui_shoplistdlg.h"
 #include <QClipboard>
 #include <QMessageBox>
+#include <QInputDialog>
 #include <QStringListModel>
+
+//---------------------------------------------------------------
+constexpr char SL_W   [] = "SL_W" ;
+constexpr char SL_H   [] = "SL_H" ;
+constexpr char SL_IN  [] = "SL_IN" ;
+constexpr char SL_OUT [] = "SL_OUT" ;
 
 //---------------------------------------------------------------
 ShopListDlg::ShopListDlg( QWidget *parent) : QDialog( parent), ui( new Ui::ShopListDlg)
 {
     ui->setupUi( this) ;
-
-    ui->outList->setModel( new QStringListModel( QStringList() << "es1" << "es2")) ;
-    ui->inList->setModel( new QStringListModel( )) ;
+    resize( m_set.value( SL_W).toInt(), m_set.value( SL_H).toInt()) ;
+    ui->inList->setModel( new QStringListModel( m_set.value( SL_IN).toString().split( ","))) ;
+    ui->outList->setModel( new QStringListModel( m_set.value( SL_OUT).toString().split( ","))) ;
 }
 
 //---------------------------------------------------------------
@@ -23,6 +30,14 @@ ShopListDlg::~ShopListDlg()
 void
 ShopListDlg::on_btnOk_clicked()
 {
+    auto list = dynamic_cast<QStringListModel*>(ui->inList->model())->stringList() ;
+    m_set.setValue( SL_IN, list.join( ",")) ;
+    list = dynamic_cast<QStringListModel*>(ui->outList->model())->stringList() ;
+    m_set.setValue( SL_OUT, list.join( ",")) ;
+
+    m_set.setValue( SL_W, width()) ;
+    m_set.setValue( SL_H, height()) ;
+
     close() ;
 }
 
@@ -75,4 +90,19 @@ ShopListDlg::on_btnCopy_clicked()
 {
     auto list = dynamic_cast<QStringListModel*>( ui->inList->model())->stringList() ;
     QApplication::clipboard()->setText( list.join( "\n")) ;
+}
+
+//---------------------------------------------------------------
+void
+ShopListDlg::on_btnInsert_clicked()
+{
+    auto szNew = QInputDialog::getText( this, windowTitle(), "Add item") ;
+    if ( szNew.isEmpty()) {
+        return ;
+    }
+    auto list = dynamic_cast<QStringListModel*>( ui->outList->model())->stringList() ;
+    if ( list.indexOf( szNew) == -1) {
+        list.append( szNew) ;
+        dynamic_cast<QStringListModel*>( ui->outList->model())->setStringList( list) ;
+    }
 }
