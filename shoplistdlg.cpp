@@ -28,15 +28,25 @@ ShopListDlg::~ShopListDlg()
 
 //---------------------------------------------------------------
 void
-ShopListDlg::on_btnOk_clicked()
+ShopListDlg::save()
 {
     auto list = dynamic_cast<QStringListModel*>(ui->inList->model())->stringList() ;
     m_set.setValue( SL_IN, list.join( ",")) ;
     list = dynamic_cast<QStringListModel*>(ui->outList->model())->stringList() ;
     m_set.setValue( SL_OUT, list.join( ",")) ;
-
     m_set.setValue( SL_W, width()) ;
     m_set.setValue( SL_H, height()) ;
+
+    m_bMod = false ;
+}
+
+//---------------------------------------------------------------
+void
+ShopListDlg::on_btnOk_clicked()
+{
+    if ( m_bMod) {
+        save() ;
+    }
 
     close() ;
 }
@@ -68,6 +78,17 @@ ShopListDlg::moveCurr( QListView* pSrc, QListView* pDest)
     list = dynamic_cast<QStringListModel*>( pDest->model())->stringList() ;
     list.append( szCurr) ;
     dynamic_cast<QStringListModel*>( pDest->model())->setStringList( list) ;
+
+    m_bMod = true ;
+}
+
+//---------------------------------------------------------------
+void
+ShopListDlg::closeEvent( QCloseEvent* pEvent)
+{
+    if ( m_bMod  &&  QMessageBox::question( this, "ShopList", "Do you want to save?") == QMessageBox::Yes) {
+        save() ;
+    }
 }
 
 //---------------------------------------------------------------
@@ -104,5 +125,6 @@ ShopListDlg::on_btnInsert_clicked()
     if ( list.indexOf( szNew) == -1) {
         list.append( szNew) ;
         dynamic_cast<QStringListModel*>( ui->outList->model())->setStringList( list) ;
+        m_bMod = true ;
     }
 }

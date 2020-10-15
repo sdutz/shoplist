@@ -26,10 +26,13 @@ class ShopListDlg : public QDialog
             void on_btnAbout_clicked() ;
             void on_btnCopy_clicked() ;
             void on_btnInsert_clicked() ;
+            void closeEvent( QCloseEvent* pEvent) ;
 
 private:
             void moveCurr( QListView* pSrc, QListView* pDest) ;
+            void save() ;
     private:
+            bool            m_bMod = false ;
             QSettings       m_set ;
             Ui::ShopListDlg *ui ;
 } ;
