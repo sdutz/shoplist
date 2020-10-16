@@ -77,6 +77,7 @@ ShopListDlg::moveCurr( QListView* pSrc, QListView* pDest)
     dynamic_cast<QStringListModel*>( pSrc->model())->setStringList( list) ;
     list = dynamic_cast<QStringListModel*>( pDest->model())->stringList() ;
     list.append( szCurr) ;
+    list.sort() ;
     dynamic_cast<QStringListModel*>( pDest->model())->setStringList( list) ;
 
     m_bMod = true ;
@@ -122,8 +123,9 @@ ShopListDlg::on_btnInsert_clicked()
         return ;
     }
     auto list = dynamic_cast<QStringListModel*>( ui->outList->model())->stringList() ;
-    if ( list.indexOf( szNew) == -1) {
+    if ( ! list.contains( szNew)) {
         list.append( szNew) ;
+        list.sort() ;
         dynamic_cast<QStringListModel*>( ui->outList->model())->setStringList( list) ;
         m_bMod = true ;
     }
