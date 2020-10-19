@@ -29,15 +29,47 @@
      <layout class="QVBoxLayout" name="verticalLayout">
       <item>
        <widget class="QPushButton" name="btnAdd">
+        <property name="minimumSize">
+         <size>
+          <width>50</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="toolTip">
+         <string>Move to the left</string>
+        </property>
         <property name="text">
-         <string>&lt;&lt;</string>
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="shoplist.qrc">
+          <normaloff>:/images/res/if_icon-arrow-left-c_211618.png</normaloff>:/images/res/if_icon-arrow-left-c_211618.png</iconset>
+        </property>
+        <property name="flat">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
       <item>
        <widget class="QPushButton" name="btnRemove">
+        <property name="minimumSize">
+         <size>
+          <width>50</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="toolTip">
+         <string>Move to the right</string>
+        </property>
         <property name="text">
-         <string>&gt;&gt;</string>
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="shoplist.qrc">
+          <normaloff>:/images/res/if_icon-arrow-right-c_211618.png</normaloff>:/images/res/if_icon-arrow-right-c_211618.png</iconset>
+        </property>
+        <property name="flat">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -59,36 +91,175 @@
      <layout class="QHBoxLayout" name="horizontalLayout">
       <item>
        <widget class="QPushButton" name="btnCopy">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>110</height>
+         </size>
+        </property>
+        <property name="toolTip">
+         <string>Send to clibpoard</string>
+        </property>
         <property name="text">
-         <string>Copy</string>
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="shoplist.qrc">
+          <normaloff>:/images/res/if_icon-37-clipboard-upload_315158.png</normaloff>:/images/res/if_icon-37-clipboard-upload_315158.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>50</width>
+          <height>110</height>
+         </size>
+        </property>
+        <property name="flat">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
       <item>
        <widget class="QPushButton" name="btnAbout">
-        <property name="text">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>110</height>
+         </size>
+        </property>
+        <property name="toolTip">
          <string>About</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="shoplist.qrc">
+          <normaloff>:/images/res/if_icon-help_211675.png</normaloff>:/images/res/if_icon-help_211675.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>50</width>
+          <height>110</height>
+         </size>
+        </property>
+        <property name="flat">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
       <item>
        <widget class="QPushButton" name="btnCancel">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>110</height>
+         </size>
+        </property>
+        <property name="toolTip">
+         <string>Close without save</string>
+        </property>
         <property name="text">
-         <string>Cancel</string>
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="shoplist.qrc">
+          <normaloff>:/images/res/if_circle-x.png</normaloff>:/images/res/if_circle-x.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>50</width>
+          <height>110</height>
+         </size>
+        </property>
+        <property name="flat">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
       <item>
        <widget class="QPushButton" name="btnOk">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>110</height>
+         </size>
+        </property>
+        <property name="toolTip">
+         <string>Save and close</string>
+        </property>
         <property name="text">
-         <string>Ok</string>
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="shoplist.qrc">
+          <normaloff>:/images/res/if_save_326688.png</normaloff>:/images/res/if_save_326688.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>50</width>
+          <height>110</height>
+         </size>
+        </property>
+        <property name="flat">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="btnDelete">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>110</height>
+         </size>
+        </property>
+        <property name="toolTip">
+         <string>Delete</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="shoplist.qrc">
+          <normaloff>:/images/res/if_circle-del_226591.png</normaloff>:/images/res/if_circle-del_226591.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>50</width>
+          <height>110</height>
+         </size>
+        </property>
+        <property name="flat">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
       <item>
        <widget class="QPushButton" name="btnInsert">
-        <property name="text">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>110</height>
+         </size>
+        </property>
+        <property name="toolTip">
          <string>Add</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="shoplist.qrc">
+          <normaloff>:/images/res/if_circle-add_226591.png</normaloff>:/images/res/if_circle-add_226591.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>50</width>
+          <height>110</height>
+         </size>
+        </property>
+        <property name="flat">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -97,6 +268,8 @@
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="shoplist.qrc"/>
+ </resources>
  <connections/>
 </ui>

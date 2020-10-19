@@ -1,0 +1,12 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>res/if_icon-37-clipboard-upload_315158.png</file>
+        <file>res/if_icon-help_211675.png</file>
+        <file>res/if_save_326688.png</file>
+        <file>res/if_circle-add_226591.png</file>
+        <file>res/if_icon-arrow-right-c_211618.png</file>
+        <file>res/if_icon-arrow-left-c_211618.png</file>
+        <file>res/if_circle-del_226591.png</file>
+        <file>res/if_circle-x.png</file>
+    </qresource>
+</RCC>
