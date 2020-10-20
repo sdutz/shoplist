@@ -12,6 +12,9 @@ constexpr char SL_IN  [] = "SL_IN" ;
 constexpr char SL_OUT [] = "SL_OUT" ;
 
 //---------------------------------------------------------------
+#define LIST_MODEL dynamic_cast<QStringListModel*>
+
+//---------------------------------------------------------------
 ShopListDlg::ShopListDlg( QWidget *parent) : QDialog( parent), ui( new Ui::ShopListDlg)
 {
     ui->setupUi( this) ;
@@ -30,9 +33,9 @@ ShopListDlg::~ShopListDlg()
 void
 ShopListDlg::save()
 {
-    auto list = dynamic_cast<QStringListModel*>(ui->inList->model())->stringList() ;
+    auto list = LIST_MODEL( ui->inList->model())->stringList() ;
     m_set.setValue( SL_IN, list.join( ",")) ;
-    list = dynamic_cast<QStringListModel*>(ui->outList->model())->stringList() ;
+    list = LIST_MODEL( ui->outList->model())->stringList() ;
     m_set.setValue( SL_OUT, list.join( ",")) ;
     m_set.setValue( SL_W, width()) ;
     m_set.setValue( SL_H, height()) ;
@@ -99,7 +102,7 @@ ShopListDlg::on_btnAbout_clicked()
 void
 ShopListDlg::on_btnCopy_clicked()
 {
-    auto list = dynamic_cast<QStringListModel*>( ui->inList->model())->stringList() ;
+    auto list = LIST_MODEL( ui->inList->model())->stringList() ;
     QApplication::clipboard()->setText( list.join( "\n")) ;
 }
 
@@ -114,11 +117,11 @@ ShopListDlg::on_btnInsert_clicked()
 QString
 ShopListDlg::removeCurr( QListView* pSrc)
 {
-    auto list = dynamic_cast<QStringListModel*>( pSrc->model())->stringList() ;
+    auto list = LIST_MODEL( pSrc->model())->stringList() ;
     auto nCurr = pSrc->currentIndex().row() ;
     auto szRet = list.at( nCurr) ;
     list.removeAt( nCurr) ;
-    dynamic_cast<QStringListModel*>( pSrc->model())->setStringList( list) ;
+    LIST_MODEL( pSrc->model())->setStringList( list) ;
     m_bMod = true ;
     return szRet ;
 }
@@ -131,13 +134,13 @@ ShopListDlg::addToList( QListView* pDst, const QString& szToAdd)
         return ;
     }
 
-    auto list = dynamic_cast<QStringListModel*>( pDst->model())->stringList() ;
+    auto list = LIST_MODEL( pDst->model())->stringList() ;
     if ( list.contains( szToAdd)) {
         return ;
     }
     list.append( szToAdd) ;
     list.sort() ;
-    dynamic_cast<QStringListModel*>( pDst->model())->setStringList( list) ;
+    LIST_MODEL( pDst->model())->setStringList( list) ;
     m_bMod = true ;
 }
 

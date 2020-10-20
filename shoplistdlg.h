@@ -37,6 +37,6 @@ class ShopListDlg : public QDialog
     private:
             bool            m_bMod = false ;
             QSettings       m_set ;
-            Ui::ShopListDlg *ui ;
+            Ui::ShopListDlg *ui = nullptr ;
 } ;
 
