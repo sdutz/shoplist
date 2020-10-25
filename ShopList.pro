@@ -28,3 +28,5 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 RESOURCES += \
     shoplist.qrc
+
+ICON = list.icns

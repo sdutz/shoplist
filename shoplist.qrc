@@ -8,5 +8,6 @@
         <file>res/if_icon-arrow-left-c_211618.png</file>
         <file>res/if_circle-del_226591.png</file>
         <file>res/if_circle-x.png</file>
+        <file>res/list.png</file>
     </qresource>
 </RCC>
