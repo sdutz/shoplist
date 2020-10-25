@@ -5,7 +5,7 @@
 int main(int argc, char *argv[])
 {
     QApplication a( argc, argv) ;
-    a.setApplicationDisplayName( "ShopLost") ;
+    a.setApplicationDisplayName( "ShopList") ;
     a.setApplicationVersion( "1.0") ;
     a.setOrganizationName( "sdutz") ;
     a.setApplicationName( "ShopList") ;
