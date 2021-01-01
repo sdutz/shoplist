@@ -119,6 +119,10 @@ ShopListDlg::removeCurr( QListView* pSrc)
 {
     auto list = LIST_MODEL( pSrc->model())->stringList() ;
     auto nCurr = pSrc->currentIndex().row() ;
+    if ( nCurr < 0) {
+        return "" ;
+    }
+
     auto szRet = list.at( nCurr) ;
     list.removeAt( nCurr) ;
     LIST_MODEL( pSrc->model())->setStringList( list) ;
