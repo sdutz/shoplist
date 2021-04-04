@@ -65,14 +65,14 @@ ShopListDlg::on_btnCancel_clicked()
 void
 ShopListDlg::on_btnAdd_clicked()
 {
-    moveCurr( *ui->outList, *ui->inList) ;
+    moveCurr( *ui->outList, *ui->inList, true) ;
 }
 
 //---------------------------------------------------------------
 void
-ShopListDlg::moveCurr( QListView& lSrc, QListView& lDst)
+ShopListDlg::moveCurr( QListView& lSrc, QListView& lDst, bool bAdding)
 {
-    addToList( lDst, removeCurr( lSrc)) ;
+    addToList( lDst, HandleQt( removeCurr( lSrc), bAdding)) ;
 }
 
 //---------------------------------------------------------------
@@ -88,7 +88,7 @@ ShopListDlg::closeEvent( QCloseEvent* pEvent)
 void
 ShopListDlg::on_btnRemove_clicked()
 {
-    moveCurr( *ui->inList, *ui->outList) ;
+    moveCurr( *ui->inList, *ui->outList, false) ;
 }
 
 //---------------------------------------------------------------
@@ -153,4 +153,12 @@ void
 ShopListDlg::ShopListDlg::on_btnDelete_clicked()
 {
     removeCurr( *ui->outList) ;
+}
+
+//---------------------------------------------------------------
+QString
+ShopListDlg::HandleQt( const QString& szSrc, bool bAdding)
+{
+    return bAdding ? szSrc + " -- " + QInputDialog::getText( this, windowTitle(), "Add quantity") :
+                     szSrc.split( " -- ").first() ;
 }

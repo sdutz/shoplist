@@ -32,7 +32,8 @@ class ShopListDlg : public QDialog
     private:
             QString removeCurr( QListView& lSrc) ;
             void addToList( QListView& lDst, const QString& szToAdd) ;
-            void moveCurr( QListView& lSrc, QListView& lDst) ;
+            void moveCurr( QListView& lSrc, QListView& lDst, bool bAdding) ;
+            QString HandleQt( const QString& szSrc, bool bAdding) ;
             void save() ;
     private:
             bool            m_bMod = false ;
