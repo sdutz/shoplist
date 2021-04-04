@@ -65,14 +65,14 @@ ShopListDlg::on_btnCancel_clicked()
 void
 ShopListDlg::on_btnAdd_clicked()
 {
-    moveCurr( ui->outList, ui->inList) ;
+    moveCurr( *ui->outList, *ui->inList) ;
 }
 
 //---------------------------------------------------------------
 void
-ShopListDlg::moveCurr( QListView* pSrc, QListView* pDst)
+ShopListDlg::moveCurr( QListView& lSrc, QListView& lDst)
 {
-    addToList( pDst, removeCurr( pSrc)) ;
+    addToList( lDst, removeCurr( lSrc)) ;
 }
 
 //---------------------------------------------------------------
@@ -88,7 +88,7 @@ ShopListDlg::closeEvent( QCloseEvent* pEvent)
 void
 ShopListDlg::on_btnRemove_clicked()
 {
-    moveCurr( ui->inList, ui->outList) ;
+    moveCurr( *ui->inList, *ui->outList) ;
 }
 
 //---------------------------------------------------------------
@@ -110,41 +110,41 @@ ShopListDlg::on_btnCopy_clicked()
 void
 ShopListDlg::on_btnInsert_clicked()
 {
-    addToList( ui->outList, QInputDialog::getText( this, windowTitle(), "Add item")) ;
+    addToList( *ui->outList, QInputDialog::getText( this, windowTitle(), "Add item")) ;
 }
 
 //---------------------------------------------------------------
 QString
-ShopListDlg::removeCurr( QListView* pSrc)
+ShopListDlg::removeCurr( QListView& lSrc)
 {
-    auto list = LIST_MODEL( pSrc->model())->stringList() ;
-    auto nCurr = pSrc->currentIndex().row() ;
+    auto list = LIST_MODEL( lSrc.model())->stringList() ;
+    auto nCurr = lSrc.currentIndex().row() ;
     if ( nCurr < 0) {
         return "" ;
     }
 
     auto szRet = list.at( nCurr) ;
     list.removeAt( nCurr) ;
-    LIST_MODEL( pSrc->model())->setStringList( list) ;
+    LIST_MODEL( lSrc.model())->setStringList( list) ;
     m_bMod = true ;
     return szRet ;
 }
 
 //---------------------------------------------------------------
 void
-ShopListDlg::addToList( QListView* pDst, const QString& szToAdd)
+ShopListDlg::addToList( QListView& lDst, const QString& szToAdd)
 {
     if ( szToAdd.isEmpty()) {
         return ;
     }
 
-    auto list = LIST_MODEL( pDst->model())->stringList() ;
+    auto list = LIST_MODEL( lDst.model())->stringList() ;
     if ( list.contains( szToAdd)) {
         return ;
     }
     list.append( szToAdd) ;
     list.sort() ;
-    LIST_MODEL( pDst->model())->setStringList( list) ;
+    LIST_MODEL( lDst.model())->setStringList( list) ;
     m_bMod = true ;
 }
 
@@ -152,5 +152,5 @@ ShopListDlg::addToList( QListView* pDst, const QString& szToAdd)
 void
 ShopListDlg::ShopListDlg::on_btnDelete_clicked()
 {
-    removeCurr( ui->outList) ;
+    removeCurr( *ui->outList) ;
 }

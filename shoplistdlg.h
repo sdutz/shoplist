@@ -30,9 +30,9 @@ class ShopListDlg : public QDialog
             void on_btnDelete_clicked() ;
 
     private:
-            QString removeCurr( QListView* pSrc) ;
-            void addToList( QListView* pDst, const QString& szToAdd) ;
-            void moveCurr( QListView* pSrc, QListView* pDst) ;
+            QString removeCurr( QListView& lSrc) ;
+            void addToList( QListView& lDst, const QString& szToAdd) ;
+            void moveCurr( QListView& lSrc, QListView& lDst) ;
             void save() ;
     private:
             bool            m_bMod = false ;
